@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>給先生的一封悄悄話 ·《媽媽，你睡了嗎？》</title>
+<style>
+  :root{
+    --cream:#FBF6EC;
+    --cream-card:#FCF2D9;
+    --cream-soft:#F6EFDD;
+    --gold:#C8912E;
+    --gold-soft:#D9A94A;
+    --ink:#2B2B2B;
+    --ink-soft:#5f5a4e;
+    --ink-faint:#9a9282;
+    --line:#e6dcc4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Noto Sans CJK TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{ font-family:"Noto Serif CJK TC","Noto Serif TC","Songti TC",serif; }
+
+  .page{ max-width:640px; margin:0 auto; padding:56px 28px 72px; }
+
+  .eyebrow{
+    text-align:center; color:var(--gold);
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-weight:700; font-size:16px; letter-spacing:.7em;
+    text-indent:.7em; margin-bottom:30px;
+  }
+
+  h1{
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-weight:900; font-size:38px; line-height:1.5;
+    text-align:center; color:var(--ink); margin-bottom:26px;
+    letter-spacing:1px;
+  }
+
+  .lede{
+    text-align:center; color:var(--ink-soft); font-size:16.5px;
+    line-height:2; max-width:520px; margin:0 auto 34px;
+  }
+  .lede .faint{ color:var(--ink-faint); }
+
+  .chip{
+    display:block; text-align:center; margin:0 auto 34px;
+    background:var(--cream-card); border-radius:40px;
+    padding:16px 26px; font-size:15.5px; color:var(--ink-soft);
+    max-width:460px;
+  }
+  .chip b{ color:var(--gold); font-weight:700; }
+
+  .rule{
+    width:44px; height:2px; background:var(--gold-soft); opacity:.5;
+    border:none; margin:38px auto; border-radius:2px;
+  }
+
+  .body-copy{ font-size:16.5px; color:var(--ink); line-height:2.05; margin-bottom:18px; }
+  .body-copy.soft{ color:var(--ink-soft); }
+
+  .q{
+    background:#fff; border-radius:18px; padding:30px 26px 28px;
+    margin-top:22px; box-shadow:0 2px 14px rgba(140,110,40,.06);
+    border:1px solid #f0e7d2;
+  }
+  .q-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px; }
+  .q-no{
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    color:var(--gold); font-weight:700; font-size:20px; flex-shrink:0; letter-spacing:1px;
+  }
+  .q-title{
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-weight:700; font-size:20px; color:var(--ink); line-height:1.5;
+  }
+  .q-opt{ font-size:13px; color:var(--gold); font-weight:400; letter-spacing:1px; }
+  .q-hint{ font-size:15px; color:var(--ink-soft); line-height:1.9; margin:12px 0 18px; }
+
+  textarea{
+    width:100%; min-height:104px; resize:vertical;
+    border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px; font-size:16px; font-family:inherit;
+    background:var(--cream); color:var(--ink); line-height:1.85;
+  }
+  textarea:focus{ outline:none; border-color:var(--gold-soft); background:#fff; }
+  textarea::placeholder{ color:#c3b99f; }
+
+  .breath{
+    text-align:center; margin:26px 0 4px; padding:34px 26px;
+    background:var(--cream-soft); border-radius:18px;
+    border:1px dashed #e3d6b6;
+  }
+  .breath .candle{ font-size:26px; display:block; margin-bottom:12px; }
+  .breath p{
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-size:18px; color:var(--ink); line-height:1.9;
+  }
+  .breath .sub{
+    font-family:"Noto Sans CJK TC",sans-serif;
+    font-size:14.5px; color:var(--ink-faint); margin-top:10px; line-height:1.85;
+  }
+
+  .submit{
+    display:block; width:100%; margin-top:34px;
+    background:var(--gold); color:#fff8ec; border:none;
+    border-radius:44px; padding:18px; cursor:pointer;
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-weight:700; font-size:19px; letter-spacing:.4em; text-indent:.4em;
+    box-shadow:0 4px 16px rgba(200,145,46,.28);
+  }
+  .submit:hover{ background:#b8801f; }
+
+  .closing{ text-align:center; margin-top:52px; }
+  .closing h2{
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-weight:900; font-size:26px; color:var(--ink); line-height:1.6; letter-spacing:1px;
+  }
+  .closing .bye{
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-size:18px; color:var(--ink-soft); margin-top:14px;
+  }
+
+  .footnote{
+    margin-top:46px; padding-top:26px; border-top:1px solid var(--line);
+    text-align:center; font-size:13px; color:var(--ink-faint); line-height:1.9;
+  }
+  .previewtag{
+    text-align:center; font-size:12px; color:#bcae8f; margin-top:34px; line-height:1.8;
+  }
+
+  /* confirm-before-submit box */
+  .confirmbox{
+    text-align:center; margin-top:26px; padding:28px 26px;
+    background:var(--cream-soft); border-radius:18px; border:1px solid #e3d6b6;
+  }
+  .confirmbox p.serif{
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-size:19px; color:var(--ink); margin-bottom:4px;
+  }
+  .confirmbox .sub{ font-size:14px; color:var(--ink-faint); margin-bottom:18px; }
+  .confirm-btns{ display:flex; gap:12px; justify-content:center; }
+  .btn-back{
+    background:transparent; border:1px solid var(--line); color:var(--ink-soft);
+    border-radius:40px; padding:12px 24px; font-size:15px; font-family:inherit; cursor:pointer;
+  }
+  .btn-back:hover{ background:#fff; }
+  .btn-go{
+    background:var(--gold); color:#fff8ec; border:none;
+    border-radius:40px; padding:12px 30px; cursor:pointer;
+    font-size:16px; font-weight:700; letter-spacing:.2em; text-indent:.2em;
+    box-shadow:0 4px 14px rgba(200,145,46,.26);
+  }
+  .btn-go:hover{ background:#b8801f; }
+
+  .statusmsg{ text-align:center; margin-top:24px; font-size:15.5px; line-height:1.9; }
+  .statusmsg .ok{ color:var(--gold); }
+  .statusmsg .warn{ color:#b05a3c; }
+  .statusmsg .sending{ color:var(--ink-soft); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow">媽 媽 ， 你 睡 了 嗎 ？</div>
+
+  <h1 class="serif">給先生的悄悄話</h1>
+
+  <p class="lede">
+    這是俐伶醫師和夥伴開始的節目，<br>
+    希望陪伴媽媽們，聊診間來不及聊的大小事。
+  </p>
+
+  <p class="body-copy soft" style="text-align:center; margin-bottom:8px;">
+    希望在爸爸節到來之前，<br>收集大家對於隊友的心聲。
+  </p>
+
+  <div class="chip">
+    🕯 提醒你，這裡是完全匿名的
+  </div>
+
+  <hr class="rule">
+
+  <div class="q">
+    <div class="q-head">
+      <span class="q-no serif">一</span>
+      <span class="q-title serif">吐吐苦水</span>
+    </div>
+    <p class="q-hint">
+      關於你的隊友，最近有沒有哪些事，讓你想抱怨一下、吐吐苦水？<br>
+      不用客氣，這裡就是給你發洩的地方。
+    </p>
+    <textarea id="q1" placeholder="想到哪，寫到哪⋯⋯"></textarea>
+  </div>
+
+  <div class="q">
+    <div class="q-head">
+      <span class="q-no serif">二</span>
+      <span class="q-title serif">那些小小的在乎 <span class="q-opt">寫不出來可留白</span></span>
+    </div>
+    <p class="q-hint">
+      有沒有可能，生活裡其實有一些小地方，是你可以感覺到他在乎你的？<br>
+      那是什麼？當下有什麼感覺？
+    </p>
+    <textarea id="q2" placeholder="那個小地方⋯⋯"></textarea>
+  </div>
+
+  <div class="q">
+    <div class="q-head">
+      <span class="q-no serif">三</span>
+      <span class="q-title serif">想跟我們說的話 <span class="q-opt">選填</span></span>
+    </div>
+    <p class="q-hint">
+      任何想跟我們說的話，或是對節目的回饋，都可以寫在這裡。
+    </p>
+    <textarea id="q3" placeholder="想跟我們說⋯⋯"></textarea>
+  </div>
+
+  <button class="submit serif" id="submitBtn">送　出</button>
+
+  <!-- confirm / status area -->
+  <div id="confirmBox" class="confirmbox" style="display:none;">
+    <p class="serif">要送出了嗎？</p>
+    <p class="sub">送出後，這些話就會輕輕交到我這裡。</p>
+    <div class="confirm-btns">
+      <button class="btn-back" id="backBtn">再想一下</button>
+      <button class="btn-go serif" id="confirmBtn">確定送出</button>
+    </div>
+  </div>
+
+  <div id="statusMsg" class="statusmsg" style="display:none;"></div>
+
+  <div class="closing" id="closingBlock" style="display:none;">
+    <h2 class="serif">謝謝你，願意分享出來。</h2>
+    <p class="bye serif">媽媽，晚安，你值得休息一下。🌙</p>
+  </div>
+
+  <div class="footnote">
+    你寫的內容若用於節目，會與所有人的話打散重組，<br>
+    絕對不會讓任何人被認出來，隊友也不會。<br>
+    這份表單不記名（不會收集姓名、Email 或 IP）。<br>
+    《媽媽，你睡了嗎？》
+  </div>
+
+</div>
+
+<script>
+  /* ===== 設定區 ===== */
+  // 測試時設 true：不會真的送出，只會在畫面上顯示「測試模式」。
+  // 正式上線前改成 false。
+  const TEST_MODE = false;
+
+  // 部署好 Apps Script 後，把下面這行換成你的 /exec 網址（保留單引號）。
+  const SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbzDnsEpQYvUGuN2EKWubRjCcJCYjFIBsIay3jENGGSrjWNT0idubnAxkug7RJNWFc6KNQ/exec';
+  /* ================= */
+
+  const submitBtn  = document.getElementById('submitBtn');
+  const confirmBox = document.getElementById('confirmBox');
+  const backBtn    = document.getElementById('backBtn');
+  const confirmBtn = document.getElementById('confirmBtn');
+  const statusMsg  = document.getElementById('statusMsg');
+  const closing    = document.getElementById('closingBlock');
+
+  function showStatus(html){ statusMsg.style.display='block'; statusMsg.innerHTML = html; }
+
+  // 第一次按「送出」→ 先出現確認
+  submitBtn.addEventListener('click', function(){
+    const q1 = document.getElementById('q1').value.trim();
+    const q2 = document.getElementById('q2').value.trim();
+    const q3 = document.getElementById('q3').value.trim();
+    if(!q1 && !q2 && !q3){
+      showStatus('<span class="warn">還沒寫下任何東西喔，寫一句也可以 🌙</span>');
+      return;
+    }
+    statusMsg.style.display='none';
+    submitBtn.style.display='none';
+    confirmBox.style.display='block';
+    confirmBox.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  // 「再想一下」→ 退回
+  backBtn.addEventListener('click', function(){
+    confirmBox.style.display='none';
+    submitBtn.style.display='block';
+  });
+
+  // 「確定送出」→ 真的送
+  confirmBtn.addEventListener('click', function(){
+    const payload = {
+      q1: document.getElementById('q1').value.trim(),
+      q2: document.getElementById('q2').value.trim(),
+      q3: document.getElementById('q3').value.trim()
+    };
+
+    confirmBox.style.display='none';
+
+    if(TEST_MODE){
+      showStatus('<span class="ok">測試模式：這是測試，沒有真的送出。<br>正式上線前記得把 TEST_MODE 改成 false。</span>');
+      return;
+    }
+
+    if(SUBMIT_URL.indexOf('PASTE_YOUR') !== -1){
+      showStatus('<span class="warn">尚未設定送出網址（只有你測試時會看到這句）。<br>把 Apps Script 的網址填進 SUBMIT_URL 就正常了。</span>');
+      return;
+    }
+
+    showStatus('<span class="sending">送出中⋯⋯</span>');
+
+    fetch(SUBMIT_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    }).then(function(){
+      statusMsg.style.display='none';
+      closing.style.display='block';
+      closing.scrollIntoView({behavior:'smooth', block:'center'});
+      // 送出成功後把輸入區收起來，避免重複送
+      document.querySelectorAll('.q').forEach(function(el){ el.style.display='none'; });
+      document.querySelector('.rule').style.display='none';
+    }).catch(function(){
+      showStatus('<span class="warn">送出好像沒成功，網路穩定後再按一次「確定送出」就好。</span>');
+      confirmBox.style.display='block';
+    });
+  });
+</script>
+
+</body>
+</html>
