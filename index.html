@@ -161,6 +161,21 @@
   .statusmsg .ok{ color:var(--gold); }
   .statusmsg .warn{ color:#b05a3c; }
   .statusmsg .sending{ color:var(--ink-soft); }
+
+  /* social / podcast links — shown after successful submit */
+  .links{ margin-top:34px; }
+  .links-lead{
+    font-family:"Noto Serif CJK TC","Noto Serif TC",serif;
+    font-size:17px; color:var(--ink-soft); margin-bottom:18px;
+  }
+  .link-item{
+    display:block; max-width:340px; margin:10px auto;
+    background:var(--cream-card); border:1px solid #eaddba;
+    border-radius:40px; padding:14px 20px;
+    color:var(--gold); text-decoration:none; font-size:15.5px; font-weight:500;
+    transition:background .15s;
+  }
+  .link-item:hover{ background:#f6e9c4; }
 </style>
 </head>
 <body>
@@ -200,13 +215,13 @@
   <div class="q">
     <div class="q-head">
       <span class="q-no serif">二</span>
-      <span class="q-title serif">那些小小的在乎 <span class="q-opt">寫不出來可留白</span></span>
+      <span class="q-title serif">換個角度看看他 <span class="q-opt">寫不出來可留白</span></span>
     </div>
     <p class="q-hint">
-      有沒有可能，生活裡其實有一些小地方，是你可以感覺到他在乎你的？<br>
-      那是什麼？當下有什麼感覺？
+      有沒有哪些小地方，是你能感覺到他在乎你的？<br>
+      有沒有想要對他說的話，一個肯定或是感謝？
     </p>
-    <textarea id="q2" placeholder="那個小地方⋯⋯"></textarea>
+    <textarea id="q2" placeholder="那個小地方、還有想對他說的話⋯⋯"></textarea>
   </div>
 
   <div class="q">
@@ -237,6 +252,13 @@
   <div class="closing" id="closingBlock" style="display:none;">
     <h2 class="serif">謝謝你，願意分享出來。</h2>
     <p class="bye serif">媽媽，晚安，你值得休息一下。🌙</p>
+
+    <div class="links">
+      <p class="links-lead serif">如果想聽更多，我們在這裡陪你 🌙</p>
+      <a class="link-item" href="https://open.firstory.me/user/cmr1ygm6805q901vm65gw9401/platforms" target="_blank" rel="noopener">🎧　收聽《媽媽，你睡了嗎？》</a>
+      <a class="link-item" href="https://www.instagram.com/dearmama_taiwan/" target="_blank" rel="noopener">📷　Instagram ＠dearmama_taiwan</a>
+      <a class="link-item" href="https://www.facebook.com/dearmama.tw" target="_blank" rel="noopener">💬　Facebook 粉絲專頁</a>
+    </div>
   </div>
 
   <div class="footnote">
@@ -252,10 +274,10 @@
   /* ===== 設定區 ===== */
   // 測試時設 true：不會真的送出，只會在畫面上顯示「測試模式」。
   // 正式上線前改成 false。
-  const TEST_MODE = false;
+  const TEST_MODE = true;
 
   // 部署好 Apps Script 後，把下面這行換成你的 /exec 網址（保留單引號）。
-  const SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbzDnsEpQYvUGuN2EKWubRjCcJCYjFIBsIay3jENGGSrjWNT0idubnAxkug7RJNWFc6KNQ/exec';
+  const SUBMIT_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
   /* ================= */
 
   const submitBtn  = document.getElementById('submitBtn');
@@ -299,7 +321,9 @@
     confirmBox.style.display='none';
 
     if(TEST_MODE){
-      showStatus('<span class="ok">測試模式：這是測試，沒有真的送出。<br>正式上線前記得把 TEST_MODE 改成 false。</span>');
+      showStatus('<span class="ok">測試模式：這是測試，沒有真的送出。<br>下面是送出成功後會看到的畫面，正式上線前把 TEST_MODE 改成 false。</span>');
+      closing.style.display='block';
+      closing.scrollIntoView({behavior:'smooth', block:'center'});
       return;
     }
 
