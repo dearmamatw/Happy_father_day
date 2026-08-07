@@ -19,7 +19,9 @@ body{background:var(--deep);color:#EDE7D6;font-family:"Noto Serif TC","Songti TC
 .stage{position:relative;z-index:3;height:100vh;display:flex;flex-direction:column;padding:3.6vh 4vw 2vh}
 .head{flex:0 0 auto;max-width:52em}
 .eyebrow{font-size:.68rem;letter-spacing:.32em;color:var(--gold);font-family:"Noto Sans TC",sans-serif;margin-bottom:1rem}
-h1{font-size:clamp(1.05rem,2.05vw,1.62rem);font-weight:500;line-height:1.6;color:#FBF3DD;margin-bottom:.7rem}
+h1{font-size:clamp(1.02rem,1.95vw,1.58rem);font-weight:500;line-height:1.62;color:#FBF3DD;margin-bottom:.7rem;
+  text-wrap:balance;word-break:keep-all;line-break:strict}
+.ph{display:inline-block}
 h1 em{font-style:normal;color:var(--gold)}
 .lede{font-size:.85rem;color:#9EAAC8;line-height:1.8;max-width:40em}
 .turn{margin-top:.55rem;font-family:"Noto Sans TC",sans-serif;font-size:.74rem;color:var(--gold);letter-spacing:.05em}
@@ -55,10 +57,16 @@ h1 em{font-style:normal;color:var(--gold)}
 .close{position:fixed;top:3vh;right:4vw;background:none;border:none;color:#8C97B4;font-size:1.9rem;cursor:pointer;line-height:1;padding:.4rem}
 .close:hover{color:var(--gold)}
 
+@media(min-width:821px) and (max-width:1180px){
+  h1{font-size:1.22rem}
+  .lede{font-size:.8rem}
+  .note span{font-size:.6rem}
+}
 @media(max-width:820px){
   body{overflow:auto}
   .stage{height:auto;min-height:100vh;padding:5vh 6vw 6vh}
-  h1{font-size:1.15rem}
+  h1{font-size:1.08rem;line-height:1.75}
+  h1 .ph{display:block}
   .wall{height:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:11px;margin-top:2.4rem}
   .note{position:relative!important;left:auto!important;top:auto!important;width:auto!important;height:118px!important;transform:none!important}
   .note:hover{transform:translateY(-4px)!important}
@@ -75,7 +83,7 @@ h1 em{font-style:normal;color:var(--gold)}
 <div class="stage">
   <div class="head">
     <div class="eyebrow">媽媽，你睡了嗎？｜父親節特輯</div>
-    <h1>爸爸辛苦了。不只是因為你付清了帳單，還有默默做完的那些事，<em>其實我們都知道</em></h1>
+    <h1><span class="ph">爸爸辛苦了。</span><span class="ph">不只是因為你付清了帳單，</span><span class="ph">還有默默做完的那些事，</span><em class="ph">其實我們都知道</em></h1>
     <p class="lede">父親節前，我們請一群媽媽寫下想對隊友說的話。可以吐苦水，也可以說謝謝。我以為會收到滿滿的抱怨。結果不是。</p>
     <p class="turn">點一張紙打開，翻過來，看看她也記得什麼。</p>
   </div>
