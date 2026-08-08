@@ -88,7 +88,7 @@ h1 em{font-style:normal;color:var(--gold)}
     <h1><span class="ph">爸爸辛苦了！</span><span class="ph">我們看見的，</span><em class="ph">不只有付清帳單而已。</em></h1>
     <p class="lede">父親節前，我們請一群媽媽寫下想對隊友說的話。可以吐苦水，也可以說謝謝。我以為會收到滿滿的抱怨，結果不是。</p>
     <p class="turn">點一張紙打開，翻過來，看看她也記得什麼。</p>
-    <p class="counter" id="counter">正在數有多少人來過⋯</p>
+    <p class="counter" id="counter">正在數這些真心話被看見幾次⋯</p>
   </div>
   <div class="wall" id="wall"></div>
   <div class="foot">內容經過改寫以保護每一個家庭，但每一份心意都是真的。　·　《媽媽，你睡了嗎？》俐伶醫師 × 小牛醫師　·　dearmama.tw@gmail.com</div>
@@ -162,13 +162,13 @@ const P=[{"sour": "", "care": "在懷孕的過程中，你總是把我放在第�
   });
 
   // ── 瀏覽人次：把下面換成你 Apps Script 部署後的 /exec 網址 ──
-  var API='https://script.google.com/macros/s/AKfycbzLc6-GJktSr0CBS8dgZg0O_oRAIR13h5T1Q3QMqggfXcCjruPPhC4Zyenfl5xcYyUb/exec';
+  var API='https://script.google.com/macros/s/請貼上你的部署ID/exec';
 
   var counterEl=document.getElementById('counter');
   fetch(API)
     .then(function(r){return r.json();})
     .then(function(d){
-      counterEl.textContent='已經有 '+d.n.toLocaleString('en-US')+' 個人來過這面牆';
+      counterEl.textContent='這些真心話，已經被看見 '+d.n.toLocaleString('en-US')+' 次';
       counterEl.classList.add('show');
     })
     .catch(function(){
