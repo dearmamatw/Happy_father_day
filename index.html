@@ -25,8 +25,8 @@ h1{font-size:clamp(1.02rem,1.95vw,1.58rem);font-weight:500;line-height:1.62;colo
 h1 em{font-style:normal;color:var(--gold)}
 .lede{font-size:.85rem;color:#9EAAC8;line-height:1.8;max-width:40em}
 .turn{margin-top:.55rem;font-family:"Noto Sans TC",sans-serif;font-size:.74rem;color:var(--gold);letter-spacing:.05em}
-.counter{margin-top:.45rem;font-family:"Noto Sans TC",sans-serif;font-size:.7rem;color:#6B7796;letter-spacing:.04em;min-height:1.2em;transition:opacity .4s;opacity:0}
-.counter.show{opacity:1}
+.counter{margin-top:.45rem;font-family:"Noto Sans TC",sans-serif;font-size:.7rem;color:#6B7796;letter-spacing:.04em;min-height:1.2em;transition:color .4s}
+.counter.show{color:var(--gold)}
 
 .wall{position:relative;flex:1 1 auto;margin-top:1.6vh}
 .note{position:absolute;background:var(--paper);color:var(--ink);border:none;padding:.85rem .8rem;
@@ -88,7 +88,7 @@ h1 em{font-style:normal;color:var(--gold)}
     <h1><span class="ph">爸爸辛苦了！</span><span class="ph">我們看見的，</span><em class="ph">不只有付清帳單而已。</em></h1>
     <p class="lede">父親節前，我們請一群媽媽寫下想對隊友說的話。可以吐苦水，也可以說謝謝。我以為會收到滿滿的抱怨，結果不是。</p>
     <p class="turn">點一張紙打開，翻過來，看看她也記得什麼。</p>
-    <p class="counter" id="counter"></p>
+    <p class="counter" id="counter">正在數有多少人翻過⋯</p>
   </div>
   <div class="wall" id="wall"></div>
   <div class="foot">內容經過改寫以保護每一個家庭，但每一份心意都是真的。　·　《媽媽，你睡了嗎？》俐伶醫師 × 小牛醫師　·　dearmama.tw@gmail.com</div>
@@ -162,14 +162,21 @@ const P=[{"sour": "", "care": "在懷孕的過程中，你總是把我放在第�
   });
 
   var counterEl=document.getElementById('counter');
-  var NS='dearmama-dad-notes', KEY='readers';
   var MARK='dm_dad_notes_visited';
+  var WS='dearmama', KEYNAME='dadnotes';
 
   function showCount(v){
-    if(typeof v==='number'&&v>0){
+    v=parseInt(v,10);
+    if(!isNaN(v)&&v>0){
       counterEl.textContent='已經有 '+v.toLocaleString()+' 個人翻閱過這些便條紙';
       counterEl.classList.add('show');
+    }else{
+      idle();
     }
+  }
+  function idle(){
+    counterEl.textContent='這些真心話，等著被看見';
+    counterEl.classList.remove('show');
   }
   function hasVisited(){
     try{return window.localStorage.getItem(MARK)==='1';}catch(e){return false;}
@@ -177,18 +184,32 @@ const P=[{"sour": "", "care": "在懷孕的過程中，你總是把我放在第�
   function markVisited(){
     try{window.localStorage.setItem(MARK,'1');}catch(e){}
   }
+  function readValue(d){
+    if(d==null)return null;
+    if(typeof d==='number')return d;
+    if(d.count!=null)return d.count;
+    if(d.value!=null)return d.value;
+    if(d.data){
+      if(d.data.count!=null)return d.data.count;
+      if(d.data.up_count!=null)return d.data.up_count;
+      if(d.data.value!=null)return d.data.value;
+    }
+    return null;
+  }
 
-  fetch('https://api.countapi.xyz/get/'+NS+'/'+KEY)
-    .then(function(r){return r.json();})
-    .then(function(d){showCount(d.value);})
-    .catch(function(){});
+  // 讀取目前人數（不增加）
+  fetch('https://api.counterapi.dev/v2/'+WS+'/'+KEYNAME)
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(d){var v=readValue(d); if(v!=null){showCount(v);}else{idle();}})
+    .catch(function(){idle();});
 
+  // 第一次翻面時 +1
   function countReader(){
     if(hasVisited())return;
     markVisited();
-    fetch('https://api.countapi.xyz/hit/'+NS+'/'+KEY)
-      .then(function(r){return r.json();})
-      .then(function(d){showCount(d.value);})
+    fetch('https://api.counterapi.dev/v2/'+WS+'/'+KEYNAME+'/up')
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(d){var v=readValue(d); if(v!=null)showCount(v);})
       .catch(function(){});
   }
 
@@ -197,6 +218,7 @@ const P=[{"sour": "", "care": "在懷孕的過程中，你總是把我放在第�
     flipBtn.textContent=card.classList.contains('flipped')?'翻回正面':'翻到背面';
     if(card.classList.contains('flipped'))countReader();
   });
+
   document.getElementById('closeBtn').addEventListener('click',closeCard);
   ov.addEventListener('click',function(e){if(e.target===ov)closeCard();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCard();});
