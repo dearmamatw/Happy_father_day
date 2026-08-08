@@ -131,7 +131,6 @@ const P=[{"sour": "", "care": "在懷孕的過程中，你總是把我放在第�
   var COLS=8, ROWS=4;
 
   function openCard(idx){
-    counted=false;
     card.classList.remove('flipped');
     fr.textContent=P[idx].sour||'';
     bk.textContent=P[idx].care||'';
@@ -163,20 +162,30 @@ const P=[{"sour": "", "care": "在懷孕的過程中，你總是把我放在第�
   });
 
   var counterEl=document.getElementById('counter');
-  var NS='dearmama-dad-notes', KEY='flips';
+  var NS='dearmama-dad-notes', KEY='readers';
+  var MARK='dm_dad_notes_visited';
+
   function showCount(v){
     if(typeof v==='number'&&v>0){
-      counterEl.textContent='這面牆已經被翻開 '+v.toLocaleString()+' 次';
+      counterEl.textContent='已經有 '+v.toLocaleString()+' 個人翻閱過這些便條紙';
       counterEl.classList.add('show');
     }
   }
+  function hasVisited(){
+    try{return window.localStorage.getItem(MARK)==='1';}catch(e){return false;}
+  }
+  function markVisited(){
+    try{window.localStorage.setItem(MARK,'1');}catch(e){}
+  }
+
   fetch('https://api.countapi.xyz/get/'+NS+'/'+KEY)
     .then(function(r){return r.json();})
     .then(function(d){showCount(d.value);})
     .catch(function(){});
 
-  var counted=false;
-  function bumpCount(){
+  function countReader(){
+    if(hasVisited())return;
+    markVisited();
     fetch('https://api.countapi.xyz/hit/'+NS+'/'+KEY)
       .then(function(r){return r.json();})
       .then(function(d){showCount(d.value);})
@@ -186,7 +195,7 @@ const P=[{"sour": "", "care": "在懷孕的過程中，你總是把我放在第�
   flipBtn.addEventListener('click',function(){
     card.classList.toggle('flipped');
     flipBtn.textContent=card.classList.contains('flipped')?'翻回正面':'翻到背面';
-    if(card.classList.contains('flipped')&&!counted){counted=true;bumpCount();}
+    if(card.classList.contains('flipped'))countReader();
   });
   document.getElementById('closeBtn').addEventListener('click',closeCard);
   ov.addEventListener('click',function(e){if(e.target===ov)closeCard();});
